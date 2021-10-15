@@ -1,4 +1,5 @@
 import '../styles/App.css';
+import Page from './Page';
 import { useEffect } from 'react';
 
 import { Provider } from 'react-redux';
@@ -17,12 +18,12 @@ if(localStorage.session) {
 const App = () => {
   useEffect(() => {
     if (!localStorage.session) {
-      store.dispatch(/* createSession */)
+      //store.dispatch(/* createSession */)
     }
   })
   return (
-    <Provider store={store}>
-
+    <Provider store={store} id="root">
+      <Page></Page>
     </Provider>
   );
 }
