@@ -4,12 +4,16 @@ import Header from "./Header";
 import Product from "./Product";
 import Products from "./Products";
 import Update from "./Update";
+import Home from "./Home";
+import Auth from "./Auth";
 
 const Page = () => {
     return (
         <Router>
             <Header></Header>
-
+            {
+                localStorage.token ? <Home></Home> : <Auth></Auth>
+            }
             <Switch>
                 <Route exact path="/"></Route>
                 <Route path="/products" component={Products}></Route>

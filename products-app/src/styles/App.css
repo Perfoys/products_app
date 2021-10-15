@@ -1,3 +1,47 @@
 .App {
   text-align: center;
 }
+
+.App-products {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.Products-settings {
+  margin: 2em 0;
+}
+
+.Products-settings Button {
+  margin-right: 1em;
+}
+
+.Product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Card-content {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+}
+
+.Card-img {
+  display: block;
+  width: 240px;
+  height: 350px;
+}
+
+.Card-title {
+  overflow: hidden;
+  width: 100%;
+  height: 60px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Card-button {
+  height: auto;
+}
