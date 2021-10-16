@@ -2,6 +2,34 @@
   text-align: center;
 }
 
+.App-header {
+  height: 100px;
+  display: flex;
+  width: 100%;
+  background-image: linear-gradient(to bottom right, coral, palevioletred);
+}
+
+.App-navbar {
+  display: flex;
+}
+
+.App-navbar ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-navbar ul li {
+  margin-right: 1em;
+}
+
+.App-header a {
+  text-decoration: none;
+  font-size: 28px;
+  color: white;
+}
+
 .App-products {
   max-width: 1000px;
   margin: 0 auto;
@@ -44,4 +72,16 @@
 
 .Card-button {
   height: auto;
+}
+
+.Add-form {
+  width: 1000px;
+  margin: 0 auto;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Add-form div {
+  margin: 1em 0;
 }

@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
-import { connect } from "react-redux"
-import { getProducts } from "../actions/products"
+import { connect } from "react-redux";
+import { getProducts } from "../actions/products";
+import Item from "./Item";
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions } from '@mui/material';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
@@ -20,9 +16,9 @@ const Products = ({ products }) => {
         store.dispatch(getProducts())
     }
 
-    useEffect(() => {
-        
-    }, [products])
+    const handleClick = (id) => {
+        window.location.assign(`http://localhost:3000/product/${id}`);
+    }
 
 
     return (
@@ -38,30 +34,14 @@ const Products = ({ products }) => {
                         if (index < amount) {
                             return (
                                 <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
-                                    <Card sx={{ width: 240, height: 500}} className="Product-card">
-                                        <CardActionArea>
-                                            <CardMedia className="Card-img" component="img" image={item.image} alt={item.title} />
-                                            <CardContent className="Card-content">
-                                                <Typography variant="h6" component="div" className="Card-title">
-                                                    {item.title}
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary" className="Card-price">
-                                                    {item.price}$
-                                                </Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                        <CardActions>
-                                            <Button className="Card-button" size="medium" color="primary">
-                                                Buy
-                                            </Button>
-                                        </CardActions>
-                                    </Card>
+                                    <Item item={item} handleClick={handleClick}></Item>
                                 </Grid>
                             )
                         }
                     })
                 }
             </Grid>
+
         </div>
     )
 }

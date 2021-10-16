@@ -17,7 +17,7 @@ const Page = () => {
             <Switch>
                 <Route exact path="/"></Route>
                 <Route path="/products" component={Products}></Route>
-                <Route path="/products/:id" component={Product}></Route>
+                <Route path="/product/:id" component={Product}></Route>
                 <Route path="/add-product" component={Add}></Route>
                 <Route path="/update-product" component={Update}></Route>
             </Switch>
