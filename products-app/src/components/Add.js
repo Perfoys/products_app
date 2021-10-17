@@ -1,12 +1,11 @@
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
-import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { addProduct } from '../actions/add';
 import store from '../store';
 
@@ -21,38 +20,45 @@ const Add = () => {
         publish: false,
     })
 
-    const handleSubmit = (data) => {
-
+    const handleSubmit = (event) => {
+        const dateNow = new Date().toString()
+        setProduct(state => ({...state, date: dateNow}))
+        store.dispatch(addProduct(product))
+        event.preventDefault();
     }
+
+    const handleChange = useCallback(
+        ({target: {name, value}}) => setProduct(state => ({...state, [name]: value}), [])
+    )
 
     return (
         <div className="App-add">
-            <FormGroup onSubmit={handleSubmit} className="Add-form">
+            <form  onSubmit={handleSubmit} className="Add-form">
                 <FormControl>
                     <InputLabel htmlFor="title">Product title</InputLabel>
-                    <Input id="title" type="text" value={product.title} onChange={(e) => setProduct(e.target.value)}/>
+                    <Input name="title" type="text" onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="description">Product description</InputLabel>
-                    <Input id="description" type="text" value={product.description} onChange={(e) => setProduct(e.target.value)}/>
+                    <Input name="description" type="text" onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="price">Product price</InputLabel>
-                    <Input id="price" type="text" value={product.price} onChange={(e) => setProduct(e.target.value)}/>
+                    <Input name="price" type="text" onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="category">Product category</InputLabel>
-                    <Input id="category" type="text" value={product.category} onChange={(e) => setProduct(e.target.value)}/>
+                    <Input name="category" type="text" onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="image">Product image</InputLabel>
-                    <Input id="image" type="text" value={product.image} onChange={(e) => setProduct(e.target.value)}/>
+                    <Input name="image" type="text" onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
-                    <FormControlLabel control={<Checkbox color="secondary"></Checkbox>} label="Publish" value={product.publish} onChange={(e) => setProduct(e.target.value)}/>
+                    <FormControlLabel control={<Checkbox color="secondary"></Checkbox>} label="Publish" name="publish" onChange={handleChange}/>
                 </FormControl>
-                <Button color="secondary">Submit</Button>
-            </FormGroup>
+                <Button color="secondary" type="submit">Submit</Button>
+            </form>
         </div>
     )
 }

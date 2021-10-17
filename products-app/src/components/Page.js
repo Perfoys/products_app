@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Add from "./Add";
 import Header from "./Header";
 import Product from "./Product";
@@ -19,7 +19,7 @@ const Page = () => {
                 <Route path="/products" component={Products}></Route>
                 <Route path="/product/:id" component={Product}></Route>
                 <Route path="/add-product" component={Add}></Route>
-                <Route path="/update-product" component={Update}></Route>
+                <Route path="/update-product/:id" component={Update}></Route>
             </Switch>
         </Router>
     )

@@ -1,26 +1,25 @@
-import { PRODUCTS_SUCCESS, PRODUCTS_FAIL } from "../actions/types";
+import { GET_SUCCESS, GET_FAIL } from "../actions/types";
 
 const initialState = {
-    products: []
+    product: {}
 }
 
-export const productsReducer = (state=initialState, action) => {
+export const getReducer = (state=initialState, action) => {
     const { type, payload } = action;
 
     switch(type) {
-        case PRODUCTS_SUCCESS:
+        case GET_SUCCESS:
             return {
                 ...state,
-                products: payload,
+                product: payload,
             }
-        case PRODUCTS_FAIL:
+        case GET_FAIL:
             return {
                 ...state,
             }
         default: 
             return {
                 ...state,
-        }
-
+            }
     }
 }

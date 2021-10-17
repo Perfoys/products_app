@@ -1,4 +1,4 @@
-import { UPDATE_SUCCESS, UPDATE_FAIL, PRODUCT_FAIL } from "../actions/types";
+import { UPDATE_SUCCESS, UPDATE_FAIL } from "../actions/types";
 
 const initialState = {
     product: {}
@@ -11,6 +11,7 @@ export const updateReducer = (state=initialState, action) => {
         case UPDATE_SUCCESS:
             return {
                 ...state,
+                payload,
             }
         case UPDATE_FAIL:
             return {

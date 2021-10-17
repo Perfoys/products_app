@@ -30,6 +30,22 @@
   color: white;
 }
 
+.App-home {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.App-auth {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .App-products {
   max-width: 1000px;
   margin: 0 auto;
@@ -84,4 +100,15 @@
 
 .Add-form div {
   margin: 1em 0;
+}
+
+.App-Product {
+  height: 100%;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.App-Product div {
+  display: flex;
+  flex-direction: column;
 }

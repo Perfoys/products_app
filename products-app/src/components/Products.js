@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { getProducts } from "../actions/products";
+import { deleteProduct } from "../actions/delete";
 import Item from "./Item";
 
 import Button from '@mui/material/Button';
@@ -20,6 +21,10 @@ const Products = ({ products }) => {
         window.location.assign(`http://localhost:3000/product/${id}`);
     }
 
+    const handleDelete = (id) => {
+        store.dispatch(deleteProduct(id))
+    }
+
 
     return (
         <div className="App-products">
@@ -34,10 +39,11 @@ const Products = ({ products }) => {
                         if (index < amount) {
                             return (
                                 <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
-                                    <Item item={item} handleClick={handleClick}></Item>
+                                    <Item item={item} handleClick={handleClick} handleDelete={handleDelete}></Item>
                                 </Grid>
                             )
                         }
+                        return true
                     })
                 }
             </Grid>
@@ -47,7 +53,7 @@ const Products = ({ products }) => {
 }
 
 const mapStateToProps = (state) => ({
-    products: state.products.products,
+    products: state.app.products.products,
 })
 
 export default connect( mapStateToProps, { getProducts })(Products)

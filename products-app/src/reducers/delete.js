@@ -1,4 +1,4 @@
-import { DELETE_SUCCESS, DELETE_FAIL, PRODUCT_FAIL } from "../actions/types";
+import { DELETE_SUCCESS, DELETE_FAIL } from "../actions/types";
 
 const initialState = {}
 
@@ -9,6 +9,7 @@ export const deleteReducer = (state=initialState, action) => {
         case DELETE_SUCCESS:
             return {
                 ...state,
+                payload,
             }
         case DELETE_FAIL:
             return {

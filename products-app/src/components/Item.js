@@ -1,11 +1,13 @@
-import { CardActions, Button } from "@mui/material";
+import { CardActions, Button } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card'
+import { IconButton } from '@mui/material';
+import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 
 
-const Item = ({ item, handleClick }) => {
+const Item = ({ item, handleClick, handleDelete }) => {
 
     return (
         <div className="App-cardnote" onClick={() => handleClick(item.id)}>
@@ -21,8 +23,11 @@ const Item = ({ item, handleClick }) => {
                 </CardContent>
                 <CardActions>
                     <Button className="Card-button" size="medium" color="primary">
-                        Buy
+                        Update
                     </Button>
+                    <IconButton onClick={() => handleDelete(item.id)}>
+                        <DeleteOutlined />
+                    </IconButton>
                 </CardActions>
             </Card>
         </div>

@@ -6,7 +6,7 @@ const initialState = {
 
 export const addReducer = (state=initialState, action) => {
     const { type, payload } = action;
-    const { addedproducts } = state;
+    let { addedproducts } = state;
 
     switch(type) {
         case ADD_SUCCESS:

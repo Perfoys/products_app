@@ -1,9 +1,9 @@
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL"
-export const PRODUCTS_SUCCESS = "PRODUCTS_SUCCESS";
-export const PRODUCTS_FAIL = "PRODUCTS_FAIL";
-export const PRODUCT_SUCCESS = "PRODUCT_SECCESS";
-export const PRODUCT_FAIL = "PRODUCT_FAIL";
+export const GETALL_SUCCESS = "GETALL_SUCCESS";
+export const GETALL_FAIL = "GETALL_FAIL";
+export const GET_SUCCESS = "GET_SECCESS";
+export const GET_FAIL = "GET_FAIL";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAIL = "ADD_FAIL";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
