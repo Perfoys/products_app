@@ -27,9 +27,7 @@ const Update = ({ addedproducts }) => {
 
     useEffect(() => {
         const id = (window.location.href).split('/')[4]
-        addedproducts.filter(item => item.id === id.toString()).map(product => {
-            setState(product)
-        })
+        addedproducts.filter(item => item.id === id.toString()).map(product => setState(product))
     }, [])
 
     const handleSubmit = (event) => {
