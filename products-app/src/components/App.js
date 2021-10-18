@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 const App = () => {
 
   return (
-    <Provider store={store} id="root">
+    <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Page></Page>
       </PersistGate>
