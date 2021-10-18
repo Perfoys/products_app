@@ -1,9 +1,8 @@
-import store from "../store";
+import { store } from "../store";
 import { updateProduct } from "../actions/update";
-import { getProductById } from "../actions/product";
+import { deleteProduct } from "../actions/delete";
 import { connect } from "react-redux";
-import isEmpty from "../helper";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
@@ -11,60 +10,82 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useHistory } from "react-router";
 
-const Update = ({ product }) => {
-    const [ state, setState] = useState(product)
+const Update = ({ addedproducts }) => {
+    const [ state, setState] = useState({
+        id: '',
+        title: '',
+        price: '',
+        description: '',
+        image: '',
+        category: '',
+        date: '',
+        publish: false,
+    })
+    const history = useHistory()
 
-    if (isEmpty(product)) {
+    useEffect(() => {
         const id = (window.location.href).split('/')[4]
-        store.dispatch(getProductById(id))
-    }
+        addedproducts.map(product => {
+            if (product.id == id) {
+                setState(product)
+            }
+        })
+    }, [])
 
     const handleSubmit = (event) => {
         const dateNow = new Date().toString()
         setState(state => ({...state, date: dateNow}))
         store.dispatch(updateProduct(state))
-        event.preventDefault();
+        history.push("/products")
     }
 
     const handleChange = useCallback(
         ({target: {name, value}}) => setState(state => ({...state, [name]: value}), [])
     )
 
+    const handleDelete = (id) => {
+        if (window.confirm('Are you sure you wish to delete this item?'))
+            store.dispatch(deleteProduct(id))
+    }
+
     return (
         <div className="App-update">
+            <h2>Update product</h2>
             <form  onSubmit={handleSubmit} className="Add-form">
                 <FormControl>
                     <InputLabel htmlFor="title">Product title</InputLabel>
-                    <Input name="title" type="text" onChange={handleChange}/>
+                    <Input name="title" type="text" value={state.title} onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="description">Product description</InputLabel>
-                    <Input name="description" type="text" onChange={handleChange}/>
+                    <Input name="description" type="text" value={state.description} onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="price">Product price</InputLabel>
-                    <Input name="price" type="text" onChange={handleChange}/>
+                    <Input name="price" type="text" value={state.price} onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="category">Product category</InputLabel>
-                    <Input name="category" type="text" onChange={handleChange}/>
+                    <Input name="category" type="text" value={state.category} onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="image">Product image</InputLabel>
-                    <Input name="image" type="text" onChange={handleChange}/>
+                    <Input name="image" type="text" value={state.image} onChange={handleChange}/>
                 </FormControl>
                 <FormControl>
                     <FormControlLabel control={<Checkbox color="secondary"></Checkbox>} label="Publish" name="publish" onChange={handleChange}/>
                 </FormControl>
                 <Button color="secondary" type="submit">Submit</Button>
+                <Button color="secondary" onClick={() => handleDelete(state.id)}>Delete</Button>
             </form>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    product: state.app.product.product,
+    addedproducts: state.app.added.products,
 })
 
 export default connect( mapStateToProps, { updateProduct })(Update)

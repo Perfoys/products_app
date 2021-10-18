@@ -7,10 +7,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { useState, useCallback } from 'react';
 import { addProduct } from '../actions/add';
-import store from '../store';
+import { store } from '../store';
+import { useHistory } from 'react-router';
 
 const Add = () => {
     const [product, setProduct] = useState({
+        id: '',
         title: '',
         price: '',
         description: '',
@@ -19,12 +21,13 @@ const Add = () => {
         date: '',
         publish: false,
     })
+    const history = useHistory()
 
     const handleSubmit = (event) => {
         const dateNow = new Date().toString()
         setProduct(state => ({...state, date: dateNow}))
         store.dispatch(addProduct(product))
-        event.preventDefault();
+        history.push("/products")
     }
 
     const handleChange = useCallback(
@@ -33,6 +36,7 @@ const Add = () => {
 
     return (
         <div className="App-add">
+            <h2>Add product</h2>
             <form  onSubmit={handleSubmit} className="Add-form">
                 <FormControl>
                     <InputLabel htmlFor="title">Product title</InputLabel>

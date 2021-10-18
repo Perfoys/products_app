@@ -5,7 +5,7 @@ export const addProduct = (product) => async (dispatch) => {
     try {
         const body = { title: product.title, price: product.price, description: product.description, image: product.image, category: product.category };
         const res = axios.post(`https://fakestoreapi.com/products`, body);
-
+        product.id = (await res).data.id;
         dispatch({ type: ADD_SUCCESS, payload: product });
     }
     catch (error) {

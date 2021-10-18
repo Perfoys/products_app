@@ -4,7 +4,7 @@ import axios from "axios";
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         const res = axios.delete(`https://fakestoreapi.com/products/${id}`);
-        dispatch({ type: DELETE_SUCCESS, payload: res.data });
+        dispatch({ type: DELETE_SUCCESS, payload: id });
     }
     catch (error) {
         dispatch({ type: DELETE_FAIL });

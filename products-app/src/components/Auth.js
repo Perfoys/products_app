@@ -4,15 +4,18 @@ import Button from '@mui/material/Button';
 import { Input } from '@mui/material';
 
 import { userLogin } from "../actions/login";
+import { useHistory } from "react-router-dom"
 
 const Auth = ({ userLogin }) => {
     const [user, setUser] = useState({
         username: "",
         password: "",
     });
+    const history = useHistory()
 
     const handleClick = async (e) => {
         userLogin(user);
+        history.push("/")
     }
 
     const handleInput = async (e) => {

@@ -4,9 +4,17 @@
 
 .App-header {
   height: 100px;
-  display: flex;
   width: 100%;
   background-image: linear-gradient(to bottom right, coral, palevioletred);
+}
+
+.App-header-wrap {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
 }
 
 .App-navbar {
@@ -111,4 +119,12 @@
 .App-Product div {
   display: flex;
   flex-direction: column;
+}
+
+.App-add h2{
+  text-align: center;
+}
+
+.App-update h2{
+  text-align: center;
 }

@@ -7,13 +7,13 @@ import { IconButton } from '@mui/material';
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 
 
-const Item = ({ item, handleClick, handleDelete }) => {
+const Item = ({ item, handleClick, handleDelete, handleUpdate }) => {
 
     return (
-        <div className="App-cardnote" onClick={() => handleClick(item.id)}>
+        <div className="App-cardnote" >
             <Card elevation={1} sx={{ width: 240, height: 500}} className="Product-card" >
-                <CardMedia className="Card-img" component="img" image={item.image} alt={item.title} />
-                <CardContent className="Card-content" >
+                <CardMedia className="Card-img" component="img" image={item.image} alt={item.title} onClick={() => handleClick(item.id)}/>
+                <CardContent className="Card-content" onClick={() => handleClick(item.id)}>
                     <Typography variant="h6" component="div" className="Card-title">
                         {item.title}
                     </Typography>
@@ -21,14 +21,19 @@ const Item = ({ item, handleClick, handleDelete }) => {
                         {item.price}
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <Button className="Card-button" size="medium" color="primary">
-                        Update
-                    </Button>
-                    <IconButton onClick={() => handleDelete(item.id)}>
-                        <DeleteOutlined />
-                    </IconButton>
-                </CardActions>
+                {
+                    item.publish ?
+                        <CardActions>
+                            <Button className="Card-button" size="medium" color="primary" onClick={() => handleUpdate(item.id)}>
+                                Update
+                            </Button>
+                            <IconButton onClick={() => handleDelete(item.id)}>
+                                <DeleteOutlined />
+                            </IconButton>
+                        </CardActions>
+                        :
+                        <div></div>
+                } 
             </Card>
         </div>
     )

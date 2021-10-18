@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 
 import { connect } from "react-redux";
 import { getProductById } from "../actions/product";
-import store from '../store';
+import { store } from '../store';
 import isEmpty from "../helper";
 
 const Product = ({ product }) => {
