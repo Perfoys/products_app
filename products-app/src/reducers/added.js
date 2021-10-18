@@ -21,14 +21,14 @@ export const addedReducer = (state=initialState, action) => {
         case UPDATE_SUCCESS:
             return {
                 ...state,
-                products: state.products.map((item) => { if (item.id == payload.id) return payload}),
+                products: state.products.filter((item) => item.id === payload.id).map(() => { return payload}),
             }
         case UPDATE_FAIL:
             return {
                 ...state,
             }
         case DELETE_SUCCESS:
-            products = state.products.filter((item, index) => index == payload);
+            products = state.products.filter((item, index) => index === payload);
             return {
                 ...state,
                 products,
