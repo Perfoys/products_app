@@ -38,6 +38,7 @@ const Update = ({ addedproducts }) => {
         const dateNow = new Date().toString()
         setState(state => ({...state, date: dateNow}))
         store.dispatch(updateProduct(state))
+        console.log(typeof state.publish)
         history.push("/products")
     }
 
@@ -56,26 +57,26 @@ const Update = ({ addedproducts }) => {
             <form  onSubmit={handleSubmit} className="Add-form">
                 <FormControl>
                     <InputLabel htmlFor="title">Product title</InputLabel>
-                    <Input name="title" type="text" value={state.title} onChange={handleChange}/>
+                    <Input name="title" type="text" value={state.title} onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="description">Product description</InputLabel>
-                    <Input name="description" type="text" value={state.description} onChange={handleChange}/>
+                    <Input name="description" type="text" value={state.description} onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="price">Product price</InputLabel>
-                    <Input name="price" type="text" value={state.price} onChange={handleChange}/>
+                    <Input name="price" type="text" value={state.price} onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="category">Product category</InputLabel>
-                    <Input name="category" type="text" value={state.category} onChange={handleChange}/>
+                    <Input name="category" type="text" value={state.category} onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="image">Product image</InputLabel>
-                    <Input name="image" type="text" value={state.image} onChange={handleChange}/>
+                    <Input name="image" type="text" value={state.image} onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
-                    <FormControlLabel control={<Checkbox color="secondary"></Checkbox>} label="Publish" name="publish" onChange={handleChange}/>
+                    <FormControlLabel control={<Checkbox color="secondary" checked={state.publish} onChange={() => setState(state=> ({...state, publish: !state.publish}))}></Checkbox>} label="Publish" name="publish" />
                 </FormControl>
                 <Button color="secondary" type="submit">Submit</Button>
                 <Button color="secondary" onClick={() => handleDelete(state.id)}>Delete</Button>

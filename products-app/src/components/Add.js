@@ -40,26 +40,26 @@ const Add = () => {
             <form  onSubmit={handleSubmit} className="Add-form">
                 <FormControl>
                     <InputLabel htmlFor="title">Product title</InputLabel>
-                    <Input name="title" type="text" onChange={handleChange}/>
+                    <Input name="title" type="text" onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="description">Product description</InputLabel>
-                    <Input name="description" type="text" onChange={handleChange}/>
+                    <Input name="description" type="text" onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="price">Product price</InputLabel>
-                    <Input name="price" type="text" onChange={handleChange}/>
+                    <Input name="price" type="text" onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="category">Product category</InputLabel>
-                    <Input name="category" type="text" onChange={handleChange}/>
+                    <Input name="category" type="text" onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
                     <InputLabel htmlFor="image">Product image</InputLabel>
-                    <Input name="image" type="text" onChange={handleChange}/>
+                    <Input name="image" type="text" onChange={handleChange} required/>
                 </FormControl>
                 <FormControl>
-                    <FormControlLabel control={<Checkbox color="secondary"></Checkbox>} label="Publish" name="publish" onChange={handleChange}/>
+                    <FormControlLabel control={<Checkbox color="secondary" name="publish" onChange={() => setProduct(state=> ({...state, publish: !state.publish}))}></Checkbox>} label="Publish"/>
                 </FormControl>
                 <Button color="secondary" type="submit">Submit</Button>
             </form>

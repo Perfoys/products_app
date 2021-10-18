@@ -28,7 +28,8 @@ const Products = ({ products, createdProducts }) => {
     }
 
     const handleDelete = (id) => {
-        store.dispatch(deleteProduct(id))
+        if (window.confirm('Are you sure you wish to delete this item?'))
+            store.dispatch(deleteProduct(id))
     }
 
     const handleUpdate = (id) => {

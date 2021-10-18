@@ -12,8 +12,8 @@ const Item = ({ item, handleClick, handleDelete, handleUpdate }) => {
     return (
         <div className="App-cardnote" >
             <Card elevation={1} sx={{ width: 240, height: 500}} className="Product-card" >
-                <CardMedia className="Card-img" component="img" image={item.image} alt={item.title} onClick={() => handleClick(item.id)}/>
-                <CardContent className="Card-content" onClick={() => handleClick(item.id)}>
+                <CardMedia className="Card-img" component="img" image={item.image} alt={item.title} onClick={() => item.hasOwnProperty('publish') ? console.log("click") : handleClick(item.id)}/>
+                <CardContent className="Card-content" onClick={() => item.hasOwnProperty('publish') ? console.log("click") : handleClick(item.id)}>
                     <Typography variant="h6" component="div" className="Card-title">
                         {item.title}
                     </Typography>
@@ -22,7 +22,7 @@ const Item = ({ item, handleClick, handleDelete, handleUpdate }) => {
                     </Typography>
                 </CardContent>
                 {
-                    item.publish ?
+                    item.hasOwnProperty('publish') ?
                         <CardActions>
                             <Button className="Card-button" size="medium" color="primary" onClick={() => handleUpdate(item.id)}>
                                 Update

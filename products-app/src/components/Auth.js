@@ -29,8 +29,8 @@ const Auth = ({ userLogin }) => {
         <div className="App-auth">
             <h2>Login</h2>
             <form className="login-form" autoComplete="off">
-                <Input placeholder="User Name" name="username" value={user.username} onChange={handleInput} inputProps={{ 'aria-label': 'username' }} />
-                <Input placeholder="Password" name="password" value={user.password} onChange={handleInput} inputProps={{ 'aria-label': 'password' }} />
+                <Input placeholder="User Name" type="text" name="username" value={user.username} onChange={handleInput} inputProps={{ 'aria-label': 'username' }} />
+                <Input placeholder="Password" type="password" name="password" value={user.password} onChange={handleInput} inputProps={{ 'aria-label': 'password' }} />
                 <Button variant="contained" color="primary" onClick={handleClick}>Enter</Button>
             </form>
         </div>
