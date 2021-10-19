@@ -18,7 +18,7 @@ const Item = ({ item, handleClick, handleDelete, handleUpdate }) => {
                         {item.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" className="Card-price">
-                        {item.price}
+                        {item.price}$
                     </Typography>
                 </CardContent>
                 {

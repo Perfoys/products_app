@@ -27,14 +27,13 @@ const Update = ({ addedproducts }) => {
 
     useEffect(() => {
         const id = (window.location.href).split('/')[4]
-        addedproducts.filter(item => item.id === id.toString()).map(product => setState(product))
+        addedproducts.filter(item => item.id.toString() === id).map(product => setState(product))
     }, [])
 
     const handleSubmit = (event) => {
         const dateNow = new Date().toString()
         setState(state => ({...state, date: dateNow}))
         store.dispatch(updateProduct(state))
-        console.log(typeof state.publish)
         history.push("/products")
     }
 

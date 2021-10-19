@@ -21,7 +21,7 @@ export const addedReducer = (state=initialState, action) => {
         case UPDATE_SUCCESS:
             return {
                 ...state,
-                products: state.products.filter((item) => item.id === payload.id).map(() => { return payload}),
+                products: state.products.filter((item) => item.id.toString() === payload.id.toString()).map(() => { return payload}),
             }
         case UPDATE_FAIL:
             return {
