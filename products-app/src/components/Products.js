@@ -11,6 +11,7 @@ import Switch from '@mui/material/Switch';
 
 import { store } from "../store";
 import { useHistory } from "react-router";
+import { getProductById } from "../actions/product";
 
 
 const Products = ({ products, createdProducts }) => {
@@ -23,8 +24,11 @@ const Products = ({ products, createdProducts }) => {
         store.dispatch(getProducts())
     }
 
-    const handleClick = (id) => {
-        history.push(`/product/${id}`)
+    const handleClick = async (id) => {
+        store.dispatch(getProductById(id))
+            .then(() => history.push(`/product/${id}`))
+            .catch(err => console.log(err))
+        
     }
 
     const handleDelete = (id) => {

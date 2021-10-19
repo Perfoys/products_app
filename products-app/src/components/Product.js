@@ -3,15 +3,9 @@ import Typography from '@mui/material/Typography';
 
 import { connect } from "react-redux";
 import { getProductById } from "../actions/product";
-import { store } from '../store';
-import isEmpty from "../helper";
 
 const Product = ({ product }) => {
-    
-    if (isEmpty(product)) {
-        const id = (window.location.href).split('/')[4]
-        store.dispatch(getProductById(id))
-    }
+
 
     return  (
         <div className="App-Product">
@@ -33,9 +27,6 @@ const Product = ({ product }) => {
                 </Typography>
                 <Typography variant="h5" gutterBottom component="div">
                     {product.price}
-                </Typography>
-                <Typography variant="h5" gutterBottom component="div">
-                    {product.price}    
                 </Typography>
             </Box>
         </div>
