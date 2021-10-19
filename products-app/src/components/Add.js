@@ -8,7 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState, useCallback } from 'react';
 import { addProduct } from '../actions/add';
 import { store } from '../store';
-import { Redirect, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 
 const Add = () => {
     const [product, setProduct] = useState({

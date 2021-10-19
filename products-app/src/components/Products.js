@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 import { store } from "../store";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 
 const Products = ({ products, createdProducts }) => {

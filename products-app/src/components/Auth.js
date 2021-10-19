@@ -14,9 +14,10 @@ const Auth = ({ userLogin }) => {
     const history = useHistory()
 
     const handleClick = async (e) => {
-        await userLogin(user);
-        window.location.reload()
-        history.push("/")
+        userLogin(user)
+            .then(response => history.push('/'))
+            .catch(err =>  console.log(err))
+        
     }
 
     const handleInput = async (e) => {
