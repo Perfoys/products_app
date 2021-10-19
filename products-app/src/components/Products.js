@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 import { store } from "../store";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 
 
 const Products = ({ products, createdProducts }) => {
@@ -46,54 +46,53 @@ const Products = ({ products, createdProducts }) => {
     }
 
     return (
-        <div className="App-products">
-            <div className="Products-tabs">
-                <Button variant="outlined" onClick={() => {setCreated(false)}}>Existed</Button>
-                <Button variant="outlined" onClick={() => {setCreated(true)}}>Created</Button>
-            </div>
-            <div className="Products-settings">
-                <Button variant="contained" onClick={() => {setAmount(8)}}>1 - 8</Button>
-                <Button variant="contained" onClick={() => {setAmount(16)}}>1 - 16</Button>
-                <Button variant="contained" onClick={() => {setAmount(20)}}>1 - 20</Button>
-                <FormControlLabel disabled={created ? false : true} control={<Switch checked={checked} onChange={handleChange}/>} label="Published" />
-            </div>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {
-                    created ? 
-                        createdProducts.map((item, index) => {
-                            if (index < amount) {
-                                if (checked && item.publish) {
-                                    return (
-                                        <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
-                                            <Item item={item} handleClick={handleClick} handleDelete={handleDelete} handleUpdate={handleUpdate} ></Item>
-                                        </Grid>
-                                    )
+            <div className="App-products">
+                <div className="Products-tabs">
+                    <Button variant="outlined" onClick={() => {setCreated(false)}}>Existed</Button>
+                    <Button variant="outlined" onClick={() => {setCreated(true)}}>Created</Button>
+                </div>
+                <div className="Products-settings">
+                    <Button variant="contained" onClick={() => {setAmount(8)}}>1 - 8</Button>
+                    <Button variant="contained" onClick={() => {setAmount(16)}}>1 - 16</Button>
+                    <Button variant="contained" onClick={() => {setAmount(20)}}>1 - 20</Button>
+                    <FormControlLabel disabled={created ? false : true} control={<Switch checked={checked} onChange={handleChange}/>} label="Published" />
+                </div>
+                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    {
+                        created ? 
+                            createdProducts.map((item, index) => {
+                                if (index < amount) {
+                                    if (checked && item.publish) {
+                                        return (
+                                            <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
+                                                <Item item={item} handleClick={handleClick} handleDelete={handleDelete} handleUpdate={handleUpdate} ></Item>
+                                            </Grid>
+                                        )
+                                    }
+                                    else if (!checked && !item.publish) {
+                                        return (
+                                            <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
+                                                <Item item={item} handleClick={handleClick} handleDelete={handleDelete} handleUpdate={handleUpdate}></Item>
+                                            </Grid>
+                                        )
+                                    }
                                 }
-                                else if (!checked && !item.publish) {
+                                return true
+                            })
+                        :
+                            products.map((item, index) => {
+                                if (index < amount) {
                                     return (
                                         <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
                                             <Item item={item} handleClick={handleClick} handleDelete={handleDelete} handleUpdate={handleUpdate}></Item>
                                         </Grid>
                                     )
                                 }
-                            }
-                            return true
-                        })
-                    :
-                        products.map((item, index) => {
-                            if (index < amount) {
-                                return (
-                                    <Grid item xs={4} lg={3} xl={2} key={index} className="Product-card">
-                                        <Item item={item} handleClick={handleClick} handleDelete={handleDelete} handleUpdate={handleUpdate}></Item>
-                                    </Grid>
-                                )
-                            }
-                            return true
-                        })
-                }
-            </Grid>
-
-        </div>
+                                return true
+                            })
+                    }
+                </Grid>
+            </div>
     )
 }
 

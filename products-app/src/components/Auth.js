@@ -14,7 +14,8 @@ const Auth = ({ userLogin }) => {
     const history = useHistory()
 
     const handleClick = async (e) => {
-        userLogin(user);
+        await userLogin(user);
+        window.location.reload()
         history.push("/")
     }
 
