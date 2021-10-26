@@ -7,8 +7,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { useState, useCallback } from 'react';
 import { addProduct } from '../actions/add';
-import { store } from '../store';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 const Add = () => {
     const [product, setProduct] = useState({
@@ -22,11 +22,12 @@ const Add = () => {
         publish: false,
     })
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const handleSubmit = (event) => {
         const dateNow = new Date().toString()
         setProduct(state => ({...state, date: dateNow}))
-        store.dispatch(addProduct(product))
+        dispatch(addProduct(product))
         history.push("/products")
     }
 

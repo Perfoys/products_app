@@ -13,11 +13,11 @@ const Auth = ({ userLogin }) => {
     });
     const history = useHistory()
 
-    const handleClick = async (e) => {
+    const handleSubmit = async (e) => {
         userLogin(user)
             .then(response => history.push('/'))
             .catch(err =>  console.log(err))
-        
+        e.preventDefault()
     }
 
     const handleInput = async (e) => {
@@ -30,10 +30,10 @@ const Auth = ({ userLogin }) => {
     return (
         <div className="App-auth">
             <h2>Login</h2>
-            <form className="login-form" autoComplete="off">
+            <form onSubmit={handleSubmit} className="login-form" autoComplete="off">
                 <Input placeholder="User Name" type="text" name="username" value={user.username} onChange={handleInput} inputProps={{ 'aria-label': 'username' }} />
                 <Input placeholder="Password" type="password" name="password" value={user.password} onChange={handleInput} inputProps={{ 'aria-label': 'password' }} />
-                <Button variant="contained" color="primary" onClick={handleClick}>Enter</Button>
+                <Button variant="contained" color="primary" type="submit">Enter</Button>
             </form>
         </div>
     )

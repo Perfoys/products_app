@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Add from "./Add";
-import Header from "./Header";
+import Header from "./sup/Header";
 import Product from "./Product";
 import Products from "./Products";
 import Update from "./Update";
 import Home from "./Home";
 import Auth from "./Auth";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./sup/PrivateRoute";
 
 const Page = () => {
 

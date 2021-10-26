@@ -1,7 +1,6 @@
-import { store } from "../store";
 import { updateProduct } from "../actions/update";
 import { deleteProduct } from "../actions/delete";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useState, useCallback, useEffect } from "react";
 
 import InputLabel from '@mui/material/InputLabel';
@@ -24,16 +23,17 @@ const Update = ({ addedproducts }) => {
         publish: false,
     })
     const history = useHistory()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const id = (window.location.href).split('/')[4]
         addedproducts.filter(item => item.id.toString() === id).map(product => setState(product))
     }, [])
 
-    const handleSubmit = (event) => {
+    const handleSubmit = () => {
         const dateNow = new Date().toString()
         setState(state => ({...state, date: dateNow}))
-        store.dispatch(updateProduct(state))
+        dispatch(updateProduct(state))
         history.push("/products")
     }
 
@@ -43,7 +43,7 @@ const Update = ({ addedproducts }) => {
 
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you wish to delete this item?'))
-            store.dispatch(deleteProduct(id))
+            dispatch(deleteProduct(id))
     }
 
     return (

@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { getProducts } from "../actions/products";
 import { deleteProduct } from "../actions/delete";
-import Item from "./Item";
+import Item from "./sup/Item";
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import { store } from "../store";
 import { useHistory } from "react-router";
 import { getProductById } from "../actions/product";
 
@@ -19,13 +18,14 @@ const Products = ({ products, createdProducts }) => {
     const [created, setCreated] = useState(false)
     const [checked, setChecked] = useState(false)
     const history = useHistory()
+    const dispatch = useDispatch()
 
     if (!products.length) {
-        store.dispatch(getProducts())
+        dispatch(getProducts())
     }
 
     const handleClick = async (id) => {
-        store.dispatch(getProductById(id))
+        dispatch(getProductById(id))
             .then(() => history.push(`/product/${id}`))
             .catch(err => console.log(err))
         
@@ -33,7 +33,7 @@ const Products = ({ products, createdProducts }) => {
 
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you wish to delete this item?'))
-            store.dispatch(deleteProduct(id))
+            dispatch(deleteProduct(id))
     }
 
     const handleUpdate = (id) => {
